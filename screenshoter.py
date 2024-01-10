@@ -16,8 +16,8 @@ def take_screenshot(url, output_path):
     chromedriver_path = os.path.join(os.getcwd(), "chromedriver.exe")
     options.binary_location = r"C:\Program Files\Google\Chrome\Application\chrome.exe"  # Adjust this based on your Chrome installation path
 
-    # Set the window size for fullscreen
-    options.add_argument("--start-maximized")
+    # Set window size for fullscreen
+    options.add_argument("--window-size=1920,1080")
 
     driver = webdriver.Chrome(executable_path=chromedriver_path, options=options)
 
