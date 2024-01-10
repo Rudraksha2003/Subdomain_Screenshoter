@@ -16,11 +16,13 @@ def take_screenshot(url, output_path):
     chromedriver_path = os.path.join(os.getcwd(), "chromedriver.exe")
     options.binary_location = r"C:\Program Files\Google\Chrome\Application\chrome.exe"  # Adjust this based on your Chrome installation path
 
+    # Set the window size for fullscreen
+    options.add_argument("--start-maximized")
+
     driver = webdriver.Chrome(executable_path=chromedriver_path, options=options)
 
     try:
         driver.get(url)
-        time.sleep(2)
 
         # Take screenshot of the first page
         driver.save_screenshot(output_path)
