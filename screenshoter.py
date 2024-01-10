@@ -12,7 +12,11 @@ def take_screenshot(url, output_path):
     # Use the installed Chromedriver
     install()
 
-    driver = webdriver.Chrome(options=options)
+    # Specify the path to Chromedriver
+    chromedriver_path = os.path.join(os.getcwd(), "chromedriver.exe")
+    options.binary_location = r"C:\Program Files\Google\Chrome\Application\chrome.exe"  # Adjust this based on your Chrome installation path
+
+    driver = webdriver.Chrome(executable_path=chromedriver_path, options=options)
 
     try:
         driver.get(url)
