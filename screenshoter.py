@@ -1,19 +1,19 @@
 import asyncio
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
-from selenium.webdriver.common.keys import Keys
 from tqdm import tqdm
 import csv
 import os
+from webdriver_manager.firefox import GeckoDriverManager
 
 async def capture_screenshot(subdomain, output_path=None):
     options = Options()
     options.add_argument('-headless')  # Run Firefox in headless mode
-    driver = webdriver.Firefox(options=options)
+    driver = webdriver.Firefox(executable_path=GeckoDriverManager().install(), options=options)
 
     try:
         driver.get(subdomain)
-        
+
         domain_name = subdomain.replace('http://', '').replace('https://', '').replace('.', '_')
         screenshot_filename = f"{domain_name}.png"
 
@@ -61,6 +61,7 @@ def create_requirements_txt():
     with open('requirements.txt', 'w') as req_file:
         req_file.write("selenium==3.141.0\n")
         req_file.write("tqdm==4.62.3\n")
+        req_file.write("webdriver-manager==3.5.0\n")
 
 if __name__ == "__main__":
     try:
